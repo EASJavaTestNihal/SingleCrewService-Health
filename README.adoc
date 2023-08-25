@@ -1,0 +1,205 @@
+// ==================================================================================
+// Running the application
+// ==================================================================================
+
+== Running the application
+
+[role='command']
+
+Go to the http://HOST:PORT/openapi/ui/[^] URL to see the OpenAPI user interface (UI) that provides API documentation and a client to test the API endpoints that you create after you see a message similar to the following example:
+
+ifdef::cloud-hosted[]
+Wait until you see a message similar to the following example:
+endif::[]
+
+[source,role="no_copy"]
+----
+CWWKZ0001I: Application guide-mongodb-intro started in 5.715 seconds.
+----
+
+ifdef::cloud-hosted[]
+Click the following button to see the OpenAPI user interface (UI) that provides API documentation and a client to test the API endpoints that you create:
+
+::startApplication{port="9080" display="external" name="Visit OpenAPI UI" route="/openapi/ui"}
+endif::[]
+
+**Try the Create operation**
+
+From the OpenAPI UI, test the create operation at the `POST /api/crew` endpoint by using the following code as the request body:
+
+[role='command']
+```
+{
+  "name": "Member1",
+  "rank": "Officer",
+  "crewID": "000001"
+}
+```
+
+This request creates a new document in the `Crew` collection with a name of `Member1`, rank of `Officer`, and crew ID of `000001`.
+
+You'll receive a response that contains the JSON object of the new crew member, as shown in the following example:
+[role="no_copy"]
+```
+{
+  "Name": "Member1",
+  "Rank": "Officer",
+  "CrewID": "000001",
+  "_id": {
+    "$oid": "<<ID>>"
+  }
+}
+```
+
+
+ifndef::cloud-hosted[]
+The `\<<ID>>` that you receive is a unique identifier in the collection. Save this value for future commands.
+endif::[]
+
+ifdef::cloud-hosted[]
+The ***\<\<ID\>\>*** that you receive is a unique identifier in the collection. Save this value for future commands.
+endif::[]
+
+**Try the Retrieve operation**
+
+From the OpenAPI UI, test the read operation at the `GET /api/crew` endpoint. This request gets all crew member documents from the collection.
+
+You'll receive a response that contains an array of all the members in your crew. The response might include crew members that were created in the **Try what you’ll build** section of this guide:
+[role="no_copy"]
+```
+[
+  {
+    "_id": {
+      "$oid": "<<ID>>"
+    },
+    "Name": "Member1",
+    "Rank": "Officer",
+    "CrewID": "000001"
+  }
+]
+```
+
+
+**Try the Update operation**
+
+ifndef::cloud-hosted[]
+From the OpenAPI UI, test the update operation at the `PUT /api/crew/{id}` endpoint, where the `{id}` parameter is the `\<<ID>>` that you saved from the create operation. Use the following code as the request body:
+endif::[]
+
+ifdef::cloud-hosted[]
+From the OpenAPI UI, test the update operation at the ***PUT /api/crew/{id}*** endpoint, where the ***{id}*** parameter is the ***\<\<ID\>\>*** that you saved from the create operation. Use the following code as the request body:
+endif::[]
+
+[role='command']
+```
+{
+  "name": "Member1",
+  "rank": "Captain",
+  "crewID": "000001"
+}
+```
+
+This request updates the rank of the crew member that you created from `Officer` to `Captain`.
+
+You'll receive a response that contains the JSON object of the updated crew member, as shown in the following example:
+
+[role="no_copy"]
+```
+{
+  "Name": "Member1",
+  "Rank": "Captain",
+  "CrewID": "000001",
+  "_id": {
+    "$oid": "<<ID>>"
+  }
+}
+```
+
+
+**Try the Delete operation**
+
+ifndef::cloud-hosted[]
+From the OpenAPI UI, test the delete operation at the `DELETE/api/crew/{id}` endpoint, where the `{id}` parameter is the `\<<ID>>` that you saved from the create operation. This request removes the document that contains the specified crew member object `id` from the collection.
+endif::[]
+
+ifdef::cloud-hosted[]
+From the OpenAPI UI, test the delete operation at the ***DELETE/api/crew/{id}*** endpoint, where the ***{id}*** parameter is the ***\<\<ID\>\>*** that you saved from the create operation. This request removes the document that contains the specified crew member object ***id*** from the collection.
+endif::[]
+
+You'll receive a response that contains the object `id` of the deleted crew member, as shown in the following example:
+
+[role="no_copy"]
+```
+{
+  "_id": {
+    "$oid": "<<ID>>"
+  }
+}
+```
+
+ifndef::cloud-hosted[]
+Now, you can check out the microservice that you created by going to the http://HOST:PORT/CONTEXT_ROOT/[^] URL.
+endif::[]
+
+ifdef::cloud-hosted[]
+Now, you can check out the microservice that you created by clicking the following button:
+
+::startApplication{port="9080" display="external" name="Launch application" route="/mongo"}
+endif::[]
+
+
+// =================================================================================================
+// Testing the service
+// =================================================================================================
+
+== Testing the application
+
+Next, you'll create integration tests to ensure that the basic operations you implemented function correctly.
+
+[role="code_command hotspot", subs="quotes"]
+----
+#Create the `CrewServiceIT` class.#
+`src/test/java/it/io/openliberty/guides/application/CrewServiceIT.java`
+----
+
+CrewServiceIT.java
+[source, Java, linenums, role="code_column hide_tags=copyright"]
+----
+include::finish/src/test/java/it/io/openliberty/guides/application/CrewServiceIT.java[]
+----
+
+The test methods are annotated with the [hotspot=test1 hotspot=test2 hotspot=test3 hotspot=test4 file=0]`@Test` annotation.
+
+The following test cases are included in this class:
+
+* [hotspot=testAddCrewMember file=0]`testAddCrewMember()` verifies that new members are correctly added to the database.
+
+* [hotspot=testUpdateCrewMember file=0]`testUpdateCrewMember()` verifies that a crew member's information is correctly updated.
+
+* [hotspot=testGetCrewMembers file=0]`testGetCrewMembers()` verifies that a list of crew members is returned by the microservice API.
+
+* [hotspot=testDeleteCrewMember file=0]`testDeleteCrewMember()` verifies that the crew members are correctly removed from the database.
+
+[role='command']
+
+You'll see the following output:
+
+[source,role="no_copy"]
+----
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running it.io.openliberty.guides.application.CrewServiceIT
+   === Adding 2 crew members to the database. ===
+      === Done. ===
+   === Updating crew member with id 5df8e0a004ccc019976c7d0a. ===
+      === Done. ===
+   === Listing crew members from the database. ===
+      === Done. There are 2 crew members. ===
+   === Removing 2 crew members from the database. ===
+      === Done. ===
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.411 s - in it.io.openliberty.guides.application.CrewServiceIT
+Results:
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
+----
+
