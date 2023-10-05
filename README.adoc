@@ -2,7 +2,7 @@
 // Running the application
 // ==================================================================================
 
-== Running the application - fix
+== Running the application
 
 [role='command']
 
