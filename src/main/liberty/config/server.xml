@@ -15,6 +15,11 @@
     <variable name="default.https.port" defaultValue="9443"/>
     <variable name="app.context.root" defaultValue="/SingleCrewService"/>
 
+    <!---  Add variables for mongodb -->
+    <variable name="mongo.hostname" defaultValue="badnostname.com"/>
+    <variable name="mongo.port" defaultValue="270"/>
+    <!-- <variable name="mongo.dbname" defaultValue="crewdb"/> -->
+
     <httpEndpoint host="*" httpPort="${default.http.port}" httpsPort="${default.https.port}" id="defaultHttpEndpoint" />
 
     <quickStartSecurity userName="admin" userPassword="admin" /> 
