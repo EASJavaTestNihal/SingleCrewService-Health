@@ -16,8 +16,8 @@
     <variable name="app.context.root" defaultValue="/"/>
 
     <!---  Add variables for mongodb -->
-    <variable name="mongo.hostname" defaultValue="ec2-54-165-152-75.compute-1.amazonaws.com"/>
-    <variable name="mongo.port" defaultValue="9270"/>
+    <variable name="mongo.hostname" defaultValue="ec2-34-204-61-161.compute-1.amazonaws.com"/>
+    <variable name="mongo.port" defaultValue="50001"/>
     <!-- <variable name="mongo.dbname" defaultValue="crewdb"/> -->
 
     <httpEndpoint host="*" httpPort="${default.http.port}" httpsPort="${default.https.port}" id="defaultHttpEndpoint" />
