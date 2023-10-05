@@ -16,7 +16,7 @@
     <variable name="app.context.root" defaultValue="/"/>
 
     <!---  Add variables for mongodb -->
-    <variable name="mongo.hostname" defaultValue="ec2-34-204-61-161.compute-1.amazonaws.com"/>
+    <variable name="mongo.hostname" defaultValue="ec2-100-26-185-111.compute-1.amazonaws.com"/>
     <variable name="mongo.port" defaultValue="50001"/>
     <!-- <variable name="mongo.dbname" defaultValue="crewdb"/> -->
 
