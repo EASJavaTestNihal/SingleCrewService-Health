@@ -18,7 +18,7 @@
     <!---  Add variables for mongodb -->
     <variable name="mongo.hostname" defaultValue="ec2-100-26-185-111.compute-1.amazonaws.com"/>
     <variable name="mongo.port" defaultValue="27017"/>
-    <!-- <variable name="mongo.dbname" defaultValue="crewdb"/> -->
+    <variable name="mongo.dbname" defaultValue="crewdb"/>
 
     <httpEndpoint host="*" httpPort="${default.http.port}" httpsPort="${default.https.port}" id="defaultHttpEndpoint" />
 
