@@ -13,7 +13,7 @@
 
     <variable name="default.http.port" defaultValue="9080"/>
     <variable name="default.https.port" defaultValue="9443"/>
-    <variable name="app.context.root" defaultValue="/SingleCrewService"/>
+    <variable name="app.context.root" defaultValue="/"/>
 
     <!---  Add variables for mongodb -->
     <variable name="mongo.hostname" defaultValue="ec2-54-165-152-75.compute-1.amazonaws.com"/>
