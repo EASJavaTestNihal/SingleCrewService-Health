@@ -41,7 +41,8 @@ public class CrewServiceIT {
     private static Client client;
     private static JsonArray testData;
     private static String rootURL;
-    private static String alternateTestUrl = System.getProperty("crewTestUrl");
+    // private static String alternateTestUrl = System.getProperty("crewTestUrl");
+    private static String alternateTestUrl = "https://app-20230825-1306-1071-8008-64c2692d67a0.dev.us-east-1.c1.appflow.dev.ibmappdomain.cloud";
     private static ArrayList<String> testIDs = new ArrayList<>(2);
 
     @BeforeAll
