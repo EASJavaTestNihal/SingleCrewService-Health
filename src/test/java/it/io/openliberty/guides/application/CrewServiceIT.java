@@ -42,7 +42,7 @@ public class CrewServiceIT {
     private static JsonArray testData;
     private static String rootURL;
     // private static String alternateTestUrl = System.getProperty("crewTestUrl");
-    private static String alternateTestUrl = "https://app-20230825-1306-1071-8008-64c2692d67a0.dev.us-east-1.c1.appflow.dev.ibmappdomain.cloud";
+    // private static String alternateTestUrl = "https://app-20230825-1306-1071-8008-64c2692d67a0.dev.us-east-1.c1.appflow.dev.ibmappdomain.cloud";
     private static ArrayList<String> testIDs = new ArrayList<>(2);
 
     @BeforeAll
@@ -51,6 +51,7 @@ public class CrewServiceIT {
 
         String port = System.getProperty("app.http.port");
         String context = System.getProperty("app.context.root");
+        String alternateTestUrl = System.getProperty("appflow.app.url");
         rootURL = alternateTestUrl != null ? alternateTestUrl + context : "http://localhost:" + port + context;
 
         // test data
