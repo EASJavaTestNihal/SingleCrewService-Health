@@ -52,7 +52,7 @@ public class CrewServiceIT {
         String port = System.getProperty("app.http.port");
         String context = System.getProperty("app.context.root");
         String alternateTestUrl = System.getProperty("appflow.app.url");
-        rootURL = alternateTestUrl != null ? alternateTestUrl + context : "http://localhost:" + port + context;
+        rootURL = alternateTestUrl != null ? alternateTestUrl : "http://localhost:" + port + context;
 
         // test data
         JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
